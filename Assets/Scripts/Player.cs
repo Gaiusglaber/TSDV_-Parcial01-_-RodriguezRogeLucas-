@@ -18,17 +18,17 @@ public class Player : MonoBehaviour
             this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y,
                 this.transform.position.z + speed * Time.deltaTime);
         }
-        else if (Input.GetKey(KeyCode.A))
+        if (Input.GetKey(KeyCode.A))
         {
             this.transform.position = new Vector3(this.transform.position.x - speed * Time.deltaTime, this.transform.position.y,
                 this.transform.position.z);
         }
-        else if (Input.GetKey(KeyCode.S))
+        if (Input.GetKey(KeyCode.S))
         {
             this.transform.position = new Vector3(this.transform.position.x, this.transform.position.y,
                 this.transform.position.z - speed * Time.deltaTime);
         }
-        else if (Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.D))
         {
             this.transform.position = new Vector3(this.transform.position.x + speed * Time.deltaTime, this.transform.position.y,
                 this.transform.position.z);

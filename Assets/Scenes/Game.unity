@@ -242,7 +242,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 62326961}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.2, y: 4.3, z: 2.57}
+  m_LocalPosition: {x: 6.71, y: 4.3, z: 2.57}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 678647056}
@@ -1857,6 +1857,7 @@ Transform:
   - {fileID: 1276778114}
   - {fileID: 1017328832}
   - {fileID: 62326962}
+  - {fileID: 1882134281}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6114,6 +6115,72 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1873716325}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1882134280
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1882134281}
+  - component: {fileID: 1882134282}
+  m_Layer: 0
+  m_Name: Instantiator
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1882134281
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882134280}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 678647056}
+  m_RootOrder: 12
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1882134282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1882134280}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fdd77792093c44a469cb7142884ab0f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  posX:
+  - -19.5
+  - -14.5
+  - -9.5
+  - -4.5
+  - 0.5
+  - 5.5
+  - 10.5
+  - 15.5
+  - 20.5
+  - 25.5
+  posZ:
+  - -18.5
+  - -13.5
+  - -8.5
+  - -3.5
+  - 2.5
+  - 7.5
+  - 12.5
+  - 17.5
+  - 22.5
+  - 27.5
+  box: {fileID: 5069355715437372893, guid: 088232e17e187a541a5d272f5025081f, type: 3}
 --- !u!1001 &1901795477
 PrefabInstance:
   m_ObjectHideFlags: 0
