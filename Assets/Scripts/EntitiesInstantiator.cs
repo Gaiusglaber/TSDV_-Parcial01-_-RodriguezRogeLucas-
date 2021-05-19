@@ -14,6 +14,30 @@ public class EntitiesInstantiator : MonoBehaviour
     [SerializeField] private const float endingPointZ = -17.5f;
     [SerializeField] private const float distance = 5f;
     [SerializeField] private GameObject box;
+    [SerializeField] private List<float> posXRandom;
+    [SerializeField] private List<float> posZRandom;
+    private bool isDupX(int tmp)
+    {
+        foreach (var item in posXRandom)
+        {
+            if (item == tmp)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+    private bool isDupZ(int tmp)
+    {
+        foreach (var item in posZRandom)
+        {
+            if (item == tmp)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
     void Start()
     {
         int auxitx = 0;
@@ -28,10 +52,26 @@ public class EntitiesInstantiator : MonoBehaviour
             posZ[auxitz] = i;
             auxitz++;
         }
-        for (short i = 0; i < Random.Range(10, 20); i++)
+        for (short i = 0; i < 9; i++)
         {
+            int randomNumberX = Random.Range(0, 9);
+            int randomNumberZ = Random.Range(0, 9);
+            int tmp = randomNumberX;
+            while (isDupX(tmp))
+            {
+                Debug.Log("estoy adentro de x");
+                tmp = Random.Range(0, 9);
+            }
+            posXRandom.Add(posX[tmp]);
+            tmp = randomNumberZ;
+            while (isDupZ(tmp))
+            {
+                Debug.Log("estoy adentro de z");
+                tmp = Random.Range(0, 9);
+            }
+            posZRandom.Add(posZ[tmp]);
             GameObject instantiateBox = Instantiate(box,
-                new Vector3(posX[Random.Range(0, 9)], 4.5f, posZ[Random.Range(0, 9)]), Quaternion.identity);
+                new Vector3(posXRandom[i], 4.5f, posZRandom[i]), Quaternion.identity);
         }
     }
 
