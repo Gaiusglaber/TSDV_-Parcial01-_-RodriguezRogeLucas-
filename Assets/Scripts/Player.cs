@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] private RaycastHit hitback;
     [SerializeField] public List<GameObject> bomblist;
     [SerializeField] private GameObject bomb;
+    [SerializeField] public int lives = 2;
     void Start()
     {
         
