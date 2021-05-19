@@ -6142,6 +6142,8 @@ MonoBehaviour:
   - 22.5
   - 27.5
   box: {fileID: 5069355715437372893, guid: 088232e17e187a541a5d272f5025081f, type: 3}
+  posXRandom: []
+  posZRandom: []
 --- !u!1001 &1901795477
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7300,6 +7302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   distance: 2.5
+  bomb: {fileID: 6132221539557276726, guid: 842db8cfe937d7647b65a824ca1854a5, type: 3}
 --- !u!4 &2044278406 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400052, guid: 68d8f3eae01c5744b996aab3358db0a0,
