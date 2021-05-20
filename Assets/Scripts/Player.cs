@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float speed = 5;
-    [SerializeField] private float distance = 2.5f;
+    [SerializeField] private float distance = 0.1f;
     [SerializeField] private IEnumerator ActualEnumerator;
     [SerializeField] private RaycastHit hitforward;
     [SerializeField] private RaycastHit hitleft;
@@ -13,6 +13,7 @@ public class Player : MonoBehaviour
     [SerializeField] private RaycastHit hitback;
     [SerializeField] public List<GameObject> bomblist;
     [SerializeField] private GameObject bomb;
+    [SerializeField] public int cantBombs=1;
     [SerializeField] public int lives = 2;
     void Start()
     {
@@ -21,8 +22,9 @@ public class Player : MonoBehaviour
 
     bool rayCastForward()
     {
-        Physics.Raycast(this.transform.position, this.transform.forward, out hitforward, distance);
-        if (hitforward.transform != null)
+        
+        Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hitforward, distance);
+        if (hitforward.transform == null)
         {
             return true;
         }
@@ -31,42 +33,7 @@ public class Player : MonoBehaviour
             return false;
         }
     }
-    bool rayCastBack()
-    {
-        Physics.Raycast(this.transform.position, -this.transform.forward, out hitback, distance);
-        if (hitback.transform != null)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    bool rayCastLeft()
-    {
-        Physics.Raycast(this.transform.position, this.transform.right, out hitleft, distance);
-        if (hitleft.transform != null)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-    bool rayCastRight()
-    {
-        Physics.Raycast(this.transform.position, -this.transform.right, out hitright, distance);
-        if (hitright.transform != null)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
+    
     // Update is called once per frame
     void Update()
     {
@@ -76,7 +43,7 @@ public class Player : MonoBehaviour
         float verticalInput = Input.GetAxis("Vertical");
         Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);
         movementDirection.Normalize();
-        if (!rayCastForward() && verticalInput <= 1)
+        if (rayCastForward())
         {
             transform.Translate(movementDirection * speed * Time.deltaTime, Space.World);
         }
@@ -89,19 +56,21 @@ public class Player : MonoBehaviour
             transform.forward = movementDirection;
         }
 
-        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))&&bomblist.Count==0)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))&&bomblist.Count<cantBombs)
         {
+            cantBombs--;
             GetComponent<Animator>().Play("Attack");
-            bomblist.Add(Instantiate(bomb,this.transform.position,Quaternion.identity));
+            bomblist.Add(Instantiate(bomb));
+            bomblist[0].transform.position = transform.position;
             StartCoroutine("ExploteBomb");
         }
-
     }
 
     IEnumerator ExploteBomb()
     {
         yield return new WaitForSeconds(2);
         Destroy(bomblist[0]);
+        cantBombs++;
         bomblist.Clear();
         yield return null;
     }

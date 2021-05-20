@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
-    [SerializeField] static public int cantdestroyed = 0; 
+    [SerializeField] static public int cantdestroyed = 0;
+    [SerializeField] static public int cantscore = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -20,5 +21,6 @@ public class Box : MonoBehaviour
     void OnDestroy()
     {
         cantdestroyed++;
+        cantscore += 50;
     }
 }
