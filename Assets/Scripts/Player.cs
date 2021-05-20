@@ -5,7 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     [SerializeField] private float speed = 5;
-    [SerializeField] private float distance = 2.5f;
+    [SerializeField] private float distance = 0.1f;
     [SerializeField] private IEnumerator ActualEnumerator;
     [SerializeField] private RaycastHit hitforward;
     [SerializeField] public List<GameObject> bomblist;
@@ -20,7 +20,7 @@ public class Player : MonoBehaviour
     bool rayCastForward()
     {
         
-        Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hitforward, distance);
+        Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hitforward, 1f);
         if (hitforward.transform != null)
         {
             if (hitforward.transform.gameObject.layer == LayerMask.NameToLayer("Wall") ||
