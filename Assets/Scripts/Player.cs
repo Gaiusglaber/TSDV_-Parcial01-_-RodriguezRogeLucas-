@@ -8,9 +8,6 @@ public class Player : MonoBehaviour
     [SerializeField] private float distance = 0.1f;
     [SerializeField] private IEnumerator ActualEnumerator;
     [SerializeField] private RaycastHit hitforward;
-    [SerializeField] private RaycastHit hitleft;
-    [SerializeField] private RaycastHit hitright;
-    [SerializeField] private RaycastHit hitback;
     [SerializeField] public List<GameObject> bomblist;
     [SerializeField] private GameObject bomb;
     [SerializeField] public int cantBombs=1;
@@ -37,8 +34,6 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        Vector3 actualposition = transform.position;
         float horizontalInput = Input.GetAxis("Horizontal");
         float verticalInput = Input.GetAxis("Vertical");
         Vector3 movementDirection = new Vector3(horizontalInput, 0, verticalInput);

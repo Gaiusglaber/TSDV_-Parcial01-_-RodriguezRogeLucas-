@@ -29972,6 +29972,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d3db5db4793c234eb01543ad8f90ab7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  state: 0
+  speed: 0.19
+  distanceToStop: 2
+  distanceToRestart: 10
+  target: {fileID: 0}
 --- !u!65 &7657266951385913104
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29980,7 +29985,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818861082154570}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -29995,7 +30000,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 1
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120

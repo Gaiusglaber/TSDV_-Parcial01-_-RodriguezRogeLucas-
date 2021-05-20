@@ -47,6 +47,7 @@ public class Bomb : MonoBehaviour
                 case 3:
                     if (checkCollision(-transform.right, destructibleMask) || checkCollision(-transform.right, EnemyMask))
                     {
+                      
                         Physics.Raycast(this.transform.position, -transform.right, out hit, destructibleMask);
                         Destroy(hit.transform.gameObject);
                     }
