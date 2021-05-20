@@ -102,4 +102,10 @@ MonoBehaviour:
   EnemyMask:
     serializedVersion: 2
     m_Bits: 4096
+  PLayerMask:
+    serializedVersion: 2
+    m_Bits: 2048
+  undestructibleMask:
+    serializedVersion: 2
+    m_Bits: 512
   player: {fileID: 6227206367841155236, guid: beb3f15d2769683498bfc4a959686728, type: 3}

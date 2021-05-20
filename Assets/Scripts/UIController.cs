@@ -13,6 +13,7 @@ public class UIController : MonoBehaviour
     [SerializeField] public TMPro.TMP_Text cantenemies;
     [SerializeField] public TMPro.TMP_Text cantdirections;
     [SerializeField] public TMPro.TMP_Text timertext;
+    private int scorenum = 0;
     public float Timer;
     void Start()
     {
@@ -22,10 +23,11 @@ public class UIController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        scorenum = Box.cantscore + Enemy.cantscore;
         timer();
         lives.text = player.lives.ToString();
         bombsactive.text = player.cantBombs.ToString();
-        score.text = Box.cantscore.ToString();
+        score.text =scorenum.ToString();
         boxesDestroyed.text = Box.cantdestroyed.ToString();
         cantenemies.text = Enemy.cantdead.ToString();
     }

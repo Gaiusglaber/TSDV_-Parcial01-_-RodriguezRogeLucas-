@@ -8,50 +8,82 @@ public class Enemy : MonoBehaviour
     {
         Idle, //0
         GoingToTarget, //1
-        GoAway, //2
-        Last,
+        Dead, //2
     }
-
+    
+    [SerializeField] private RaycastHit hitforward;
+    [SerializeField] private float distance = 2;
     [SerializeField] public static int cantdead = 0;
+    [SerializeField] public static int cantscore = 0;
     [SerializeField] private EnemyState state;
+    [SerializeField] public bool goingtodie = false;
 
-    public float speed = 10;
-    public float distanceToStop = 5;
-    public float distanceToRestart = 10;
-
+    public float speed = 0.5f;
     public Transform target;
 
     private float t;
+    bool rayCastForward()
+    {
 
+        Physics.Raycast(this.transform.position, transform.TransformDirection(Vector3.forward), out hitforward, distance);
+        if (hitforward.transform == null)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
     private void Update()
     {
         t += Time.deltaTime;
-        switch (state)
+        if (!goingtodie)
         {
-            case EnemyState.Idle:
-                if (t > 1)
-                {
-                    NextState();
-                }
-                break;
-            case EnemyState.GoingToTarget:
-                Vector3 dir = target.position - transform.position;
-                transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World); //, Space.World);
-                if (Vector3.Distance(transform.position, target.position) < distanceToStop)
-                    NextState();
-                break;
-            case EnemyState.GoAway:
-                Vector3 dir02 = transform.position - target.position;
-                transform.Translate(dir02.normalized * speed * Time.deltaTime, Space.World);
-                if (Vector3.Distance(transform.position, target.position) > distanceToRestart)
-                    NextState();
-                break;
+            switch (state)
+            {
+                case EnemyState.Idle:
+                    StartCoroutine("IdleAnimation");
+                    if (t > 1)
+                    {
+                        NextState();
+                    }
+
+                    break;
+                case EnemyState.GoingToTarget:
+                    StartCoroutine("WalkAnimation");
+                    if (rayCastForward())
+                    {
+                        transform.position += transform.forward * Time.deltaTime;
+                    }
+
+                    if (t > 2)
+                    {
+                        if (!rayCastForward())
+                        {
+                            int randomrotation = Random.Range(0, 1);
+                            if (randomrotation == 0)
+                            {
+                                transform.forward = -transform.right;
+                            }
+                            else
+                            {
+                                transform.forward = transform.right;
+                            }
+                        }
+
+                        NextState();
+                    }
+
+                    break;
+            }
         }
     }
 
     private void OnDestroy()
     {
         cantdead++;
+        cantscore += 150;
     }
 
     private void NextState()
@@ -59,12 +91,25 @@ public class Enemy : MonoBehaviour
         t = 0;
         int intState = (int)state;
         intState++;
-        intState = intState % ((int)EnemyState.Last);
+        intState = intState % ((int)EnemyState.Dead);
         SetState((EnemyState)intState);
     }
 
     private void SetState(EnemyState es)
     {
         state = es;
+    }
+
+    IEnumerator IdleAnimation()
+    {
+        GetComponent<Animator>().Play("idle");
+        yield return new WaitForSeconds(2);
+        yield return null;
+    }
+    IEnumerator WalkAnimation()
+    {
+        GetComponent<Animator>().Play("walk");
+        yield return new WaitForSeconds(2);
+        yield return null;
     }
 }
