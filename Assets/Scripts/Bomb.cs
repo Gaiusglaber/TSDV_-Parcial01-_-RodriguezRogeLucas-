@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Bomb : MonoBehaviour
 {
@@ -48,6 +49,7 @@ public class Bomb : MonoBehaviour
                         {
                             GameManager.gameover = true;
                             GameManager.win = false;
+                            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                         }
                         hit.transform.GetComponent<Player>().RespawnPlayer();
                     }
@@ -81,6 +83,7 @@ public class Bomb : MonoBehaviour
                         {
                             GameManager.gameover = true;
                             GameManager.win = false;
+                            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                         }
                         hit.transform.GetComponent<Player>().RespawnPlayer();
                     }
@@ -114,6 +117,7 @@ public class Bomb : MonoBehaviour
                         {
                             GameManager.gameover = true;
                             GameManager.win = false;
+                            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                         }
                         hit.transform.GetComponent<Player>().RespawnPlayer();
                     }
@@ -147,6 +151,7 @@ public class Bomb : MonoBehaviour
                         {
                             GameManager.gameover = true;
                             GameManager.win = false;
+                            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
                         }
                         hit.transform.GetComponent<Player>().RespawnPlayer();
                     }

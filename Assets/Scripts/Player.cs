@@ -10,7 +10,8 @@ public class Player : MonoBehaviour
     [SerializeField] private RaycastHit hitforward;
     [SerializeField] public List<GameObject> bomblist;
     [SerializeField] private GameObject bomb;
-    [SerializeField] public int cantBombs=1;
+    private int cantBombs=1;
+    [SerializeField] public int currentbomb = 0;
     [SerializeField] public int lives = 2;
     [SerializeField] public bool powerUp = false;
     [SerializeField] public Vector3 startPosition;
@@ -19,6 +20,10 @@ public class Player : MonoBehaviour
         startPosition = transform.position;
     }
 
+    public void PowerBombs()
+    {
+        cantBombs++;
+    }
     bool rayCastForward()
     {
         
@@ -54,29 +59,24 @@ public class Player : MonoBehaviour
                 {
                     GetComponent<Animator>().Play("Walk");
                 }
-
                 transform.forward = movementDirection;
             }
-
-            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && bomblist.Count < cantBombs)
+            if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) && currentbomb < cantBombs)
             {
-                cantBombs--;
+                currentbomb++;
                 GetComponent<Animator>().Play("Attack");
                 bomblist.Add(Instantiate(bomb,transform.position,Quaternion.identity));
-                for (short i = 0; i < bomblist.Count; i++)
-                {
-                    StartCoroutine("ExploteBomb",i);
-                }
+                StartCoroutine("ExploteBomb");
             }
         }
     }
 
-    IEnumerator ExploteBomb(int cantbombs)
+    IEnumerator ExploteBomb()
     {
         yield return new WaitForSeconds(2);
-        Destroy(bomblist[cantbombs]);
-        cantBombs++;
-        bomblist.Clear();
+        Destroy(bomblist[currentbomb-1]);
+        bomblist.Remove(bomblist[currentbomb - 1]);
+        currentbomb--;
         yield return null;
     }
 

@@ -29915,7 +29915,7 @@ GameObject:
   - component: {fileID: 95448628147039386}
   - component: {fileID: 4407738959674103942}
   - component: {fileID: 7657266951385913104}
-  - component: {fileID: 7720556468809696982}
+  - component: {fileID: -7294349032670069204}
   m_Layer: 12
   m_Name: Mon_00
   m_TagString: Enemy
@@ -29973,10 +29973,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  speed: 0.19
-  distanceToStop: 2
-  distanceToRestart: 10
-  target: {fileID: 0}
+  goingtodie: 0
 --- !u!65 &7657266951385913104
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29990,28 +29987,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!195 &7720556468809696982
-NavMeshAgent:
+--- !u!54 &-7294349032670069204
+Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1818861082154570}
-  m_Enabled: 1
-  m_AgentTypeID: 0
-  m_Radius: 0.5
-  m_Speed: 1
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 2
-  m_BaseOffset: 0
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0
 --- !u!1 &1846604720013428
 GameObject:
   m_ObjectHideFlags: 0

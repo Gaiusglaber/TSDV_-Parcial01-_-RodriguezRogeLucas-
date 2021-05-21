@@ -26,7 +26,7 @@ public class UIController : MonoBehaviour
         scorenum = Box.cantscore + Enemy.cantscore;
         timer();
         lives.text = player.lives.ToString();
-        bombsactive.text = player.cantBombs.ToString();
+        bombsactive.text = player.currentbomb.ToString();
         score.text =scorenum.ToString();
         boxesDestroyed.text = Box.cantdestroyed.ToString();
         cantenemies.text = Enemy.cantdead.ToString();

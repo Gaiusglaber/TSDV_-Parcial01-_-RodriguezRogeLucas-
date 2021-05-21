@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Door : MonoBehaviour
 {
@@ -10,14 +11,11 @@ public class Door : MonoBehaviour
     {
         if (collisioninfo.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            info.gameObject.SetActive(true);
-            if (Enemy.cantdead < 4&&info.color.a>0)
+            if (Enemy.cantdead == 4)
             {
-                info.color = new Color(info.color.r,info.color.g,info.color.b,info.color.a*Time.deltaTime);
-            }
-            else
-            {
-                info.gameObject.SetActive(false);
+                GameManager.gameover = true;
+                GameManager.win = true;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
             }
         }
     }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Enemy : MonoBehaviour
 {
@@ -29,6 +30,21 @@ public class Enemy : MonoBehaviour
         else
         {
             return false;
+        }
+    }
+
+    private void OnCollisionEnter(Collision collisioninfo)
+    {
+        if (collisioninfo.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
+        {
+            collisioninfo.transform.GetComponent<Player>().lives--;
+            if (collisioninfo.transform.GetComponent<Player>().lives <= 0)
+            {
+                GameManager.gameover = true;
+                GameManager.win = false;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+            collisioninfo.transform.GetComponent<Player>().RespawnPlayer();
         }
     }
     private void Update()

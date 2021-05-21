@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUp : MonoBehaviour
+public class PowerUpLife : MonoBehaviour
 {
-    // Start is called before the first frame update
-    public void OnCollisionEnter(Collision collisioninfo)
+    private void OnCollisionEnter(Collision collisioninfo)
     {
         if (collisioninfo.transform.gameObject.layer == LayerMask.NameToLayer("Player"))
         {
-            
+            collisioninfo.transform.GetComponent<Player>().lives++;
+            Destroy(this.gameObject);
         }
     }
 }

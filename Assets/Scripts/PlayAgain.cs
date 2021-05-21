@@ -7,6 +7,8 @@ public class PlayAgain : MonoBehaviour
     // Start is called before the first frame update
     public void Playagain()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex-1);
+        GameManager.gameover = false;
+        GameManager.win = false;
     }
 }
