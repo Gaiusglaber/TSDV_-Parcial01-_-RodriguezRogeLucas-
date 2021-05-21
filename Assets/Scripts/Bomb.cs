@@ -6,7 +6,8 @@ using UnityEngine.SceneManagement;
 
 public class Bomb : MonoBehaviour
 {
-    [SerializeField] private float distance=10f;
+    public static float distance=2.5f;
+    public static int distancebomb = 1;
     [SerializeField] GameObject destroyanimation;
     [SerializeField] private List<GameObject> instantiators;
     [SerializeField] private LayerMask destructibleMask;
@@ -14,7 +15,6 @@ public class Bomb : MonoBehaviour
     [SerializeField] private LayerMask PLayerMask;
     [SerializeField] private LayerMask undestructibleMask;
     [SerializeField] public Player player;
-
     bool checkCollision(Vector3 direction,LayerMask mask)
     {
         return (Physics.Raycast(transform.position, direction, distance, mask));
@@ -55,9 +55,12 @@ public class Bomb : MonoBehaviour
                     }
                     else if (!checkCollision(transform.forward, undestructibleMask))
                     {
-                        instantiators.Add(Instantiate(destroyanimation,
-                            new Vector3(this.transform.position.x, this.transform.position.y,
-                                this.transform.position.z+2.5f), Quaternion.identity));
+                        for (float j = 2.5f; j <= distance; j += 2.5f)
+                        {
+                            instantiators.Add(Instantiate(destroyanimation,
+                                new Vector3(this.transform.position.x, this.transform.position.y,
+                                    this.transform.position.z + j), Quaternion.identity));
+                        }
                     }
                     break;
                 case 1:
@@ -89,9 +92,12 @@ public class Bomb : MonoBehaviour
                     }
                     else if (!checkCollision(-transform.forward, undestructibleMask))
                     {
-                        instantiators.Add(Instantiate(destroyanimation,
-                            new Vector3(this.transform.position.x, this.transform.position.y,
-                                this.transform.position.z - 2.5f), Quaternion.identity));
+                        for (float j = 2.5f; j <= distance; j += 2.5f)
+                        {
+                            instantiators.Add(Instantiate(destroyanimation,
+                                new Vector3(this.transform.position.x, this.transform.position.y,
+                                    this.transform.position.z - j), Quaternion.identity));
+                        }
                     }
                     break;
                 case 2:
@@ -123,9 +129,12 @@ public class Bomb : MonoBehaviour
                     }
                     else if (!checkCollision(transform.right, undestructibleMask))
                     {
-                        instantiators.Add(Instantiate(destroyanimation,
-                            new Vector3(this.transform.position.x+2.5f, this.transform.position.y,
-                                this.transform.position.z), Quaternion.identity));
+                        for (float j = 2.5f; j <= distance; j += 2.5f)
+                        {
+                            instantiators.Add(Instantiate(destroyanimation,
+                                new Vector3(this.transform.position.x + j, this.transform.position.y,
+                                    this.transform.position.z), Quaternion.identity));
+                        }
                     }
                     break;
                 case 3:
@@ -157,9 +166,12 @@ public class Bomb : MonoBehaviour
                     }
                     else if (!checkCollision(-transform.right, undestructibleMask))
                     {
-                        instantiators.Add(Instantiate(destroyanimation,
-                            new Vector3(this.transform.position.x-2.5f, this.transform.position.y,
-                                this.transform.position.z), Quaternion.identity));
+                        for (float j = 2.5f; j <= distance; j += 2.5f)
+                        {
+                            instantiators.Add(Instantiate(destroyanimation,
+                                new Vector3(this.transform.position.x - j, this.transform.position.y,
+                                    this.transform.position.z), Quaternion.identity));
+                        }
                     }
                     break;
             }

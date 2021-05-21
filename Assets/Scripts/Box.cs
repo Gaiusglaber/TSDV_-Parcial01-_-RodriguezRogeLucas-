@@ -10,6 +10,7 @@ public class Box : MonoBehaviour
     [SerializeField] private static bool doorspawn = false;
     public GameObject PowerUpLife;
     public GameObject PowerUpBomb;
+    public GameObject PowerUpCross;
     public GameObject door;
 
     void OnDestroy()
@@ -35,6 +36,10 @@ public class Box : MonoBehaviour
                 }
             }
 
+            if (randomnumber == 0)
+            {
+                Instantiate(PowerUpCross, transform.position, Quaternion.identity);
+            }
             if (randomnumber == 2)
             {
                 Instantiate(PowerUpLife, transform.position, Quaternion.identity);
