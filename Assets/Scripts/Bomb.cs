@@ -44,6 +44,12 @@ public class Bomb : MonoBehaviour
                         Physics.Raycast(this.transform.position, transform.forward, out hit, destructibleMask);
                         hit.transform.GetComponent<Animator>().Play("Get hit");
                         hit.transform.GetComponent<Player>().lives--;
+                        if (hit.transform.GetComponent<Player>().lives <= 0)
+                        {
+                            GameManager.gameover = true;
+                            GameManager.win = false;
+                        }
+                        hit.transform.GetComponent<Player>().RespawnPlayer();
                     }
                     else if (!checkCollision(transform.forward, undestructibleMask))
                     {
@@ -71,6 +77,12 @@ public class Bomb : MonoBehaviour
                         Physics.Raycast(this.transform.position, -transform.forward, out hit, destructibleMask);
                         hit.transform.GetComponent<Animator>().Play("Get hit");
                         hit.transform.GetComponent<Player>().lives--;
+                        if (hit.transform.GetComponent<Player>().lives <= 0)
+                        {
+                            GameManager.gameover = true;
+                            GameManager.win = false;
+                        }
+                        hit.transform.GetComponent<Player>().RespawnPlayer();
                     }
                     else if (!checkCollision(-transform.forward, undestructibleMask))
                     {
@@ -98,6 +110,12 @@ public class Bomb : MonoBehaviour
                         Physics.Raycast(this.transform.position, transform.right, out hit, destructibleMask);
                         hit.transform.GetComponent<Animator>().Play("Get hit");
                         hit.transform.GetComponent<Player>().lives--;
+                        if (hit.transform.GetComponent<Player>().lives <= 0)
+                        {
+                            GameManager.gameover = true;
+                            GameManager.win = false;
+                        }
+                        hit.transform.GetComponent<Player>().RespawnPlayer();
                     }
                     else if (!checkCollision(transform.right, undestructibleMask))
                     {
@@ -125,6 +143,12 @@ public class Bomb : MonoBehaviour
                         Physics.Raycast(this.transform.position, -transform.right, out hit, destructibleMask);
                         hit.transform.GetComponent<Animator>().Play("Get hit");
                         hit.transform.GetComponent<Player>().lives--;
+                        if (hit.transform.GetComponent<Player>().lives <= 0)
+                        {
+                            GameManager.gameover = true;
+                            GameManager.win = false;
+                        }
+                        hit.transform.GetComponent<Player>().RespawnPlayer();
                     }
                     else if (!checkCollision(-transform.right, undestructibleMask))
                     {

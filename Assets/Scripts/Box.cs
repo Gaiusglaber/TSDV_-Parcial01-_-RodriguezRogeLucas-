@@ -12,10 +12,12 @@ public class Box : MonoBehaviour
 
     void OnDestroy()
     {
+        cantdestroyed++;
+        cantscore += 50;
         if (!doorspawn)
         {
-            int randomnumberdoor = Random.Range(0, 5);
-            if (true)
+            int randomnumberdoor = Random.Range(0, 4);
+            if (randomnumberdoor==1 ||cantdestroyed==EntitiesInstantiator.randomBoxGenerator)
             {
                 Instantiate(door, new Vector3(this.transform.position.x,this.transform.position.y-1f,this.transform.position.z),
                     new Quaternion(this.transform.rotation.x-0.9f, this.transform.rotation.y,
@@ -23,7 +25,5 @@ public class Box : MonoBehaviour
                 doorspawn = true;
             }
         }
-        cantdestroyed++;
-        cantscore += 50;
     }
 }

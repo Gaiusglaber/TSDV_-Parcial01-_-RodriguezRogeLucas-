@@ -8,6 +8,7 @@ public class EntitiesInstantiator : MonoBehaviour
 {
     [SerializeField] private float[] posX = new float[10];
     [SerializeField] private float[] posZ = new float[10];
+    [SerializeField] public static int randomBoxGenerator;
     [SerializeField] private const float startingPointX = -18.5f;
     [SerializeField] private const float endingPointX = 26.5f;
     [SerializeField] private const float startingPointZ = 27.5f;
@@ -16,6 +17,7 @@ public class EntitiesInstantiator : MonoBehaviour
     [SerializeField] private GameObject box;
     [SerializeField] private List<float> posXRandom;
     [SerializeField] private List<float> posZRandom;
+
     private bool isDupX(int tmp)
     {
         foreach (var item in posXRandom)
@@ -40,6 +42,7 @@ public class EntitiesInstantiator : MonoBehaviour
     }
     void Start()
     {
+        randomBoxGenerator = Random.Range(10, 15);
         int auxitx = 0;
         for (float i = startingPointX; i < endingPointX; i += distance)
         {
@@ -52,7 +55,7 @@ public class EntitiesInstantiator : MonoBehaviour
             posZ[auxitz] = i;
             auxitz++;
         }
-        for (short i = 0; i < 9; i++)
+        for (short i = 0; i < randomBoxGenerator; i++)
         {
             int randomNumberX = Random.Range(0, 9);
             int randomNumberZ = Random.Range(0, 9);
